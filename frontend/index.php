@@ -165,7 +165,7 @@
                     <div class="card-body">
                         <form id="messageForm" class="needs-validation" novalidate>
                             <div class="mb-3">
-                                <label for="excelFile" class="form-label">Excel File (with 'phone' column)</label>
+                                <label for="excelFile" class="form-label">Excel File (with 'phone' column) and maximum 50 contacts</label>
                                 <div id="dropZone">
                                     <i class="fas fa-file-excel fa-2x mb-2"></i>
                                     <p class="mb-0">Drag & drop your Excel file here or click to browse</p>
@@ -400,7 +400,7 @@
                     // Compress the image
                     const compressedFile = await compressImage(file, maxSize);
                     if (compressedFile.size > maxSize) {
-                        alert('Image is too large. Maximum size is 2MB. Please choose a smaller image.');
+                        alert('Image is too large. Maximum size is 200kB. Please choose a smaller image.');
                         removeImage();
                         return;
                     }
