@@ -9,7 +9,7 @@
 *.zip
 
 # ===================
-# Python
+# Python (Flask)
 # ===================
 __pycache__/
 *.py[cod]
@@ -23,18 +23,26 @@ venv/
 *.sqlite3
 *.db
 *.egg-info/
+instance/
+*.log
 
-# Jupyter Notebooks
-.ipynb_checkpoints/
+# Flask specific
+*.pid
+*.db-journal
+*.sqlite
 
 # ===================
-# PHP
+# PHP (Core)
 # ===================
 *.log
 *.cache
 *.lock
 vendor/
 composer.lock
+public/uploads/
+public/cache/
+phpunit.xml
+phpunit.xml.dist
 
 # ===================
 # Docker
@@ -43,7 +51,7 @@ composer.lock
 docker-compose.override.yml
 
 # ===================
-# Node (if using)
+# Node (if using Node for frontend)
 # ===================
 node_modules/
 npm-debug.log*
