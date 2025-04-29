@@ -11,3 +11,5 @@ opencv-python
 Pillow
 fastapi
 uvicorn
+flask
+gunicorn
