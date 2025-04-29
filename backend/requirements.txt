@@ -1,0 +1,13 @@
+flask==3.1.0
+flask-cors==4.0.0
+pandas==2.2.1
+openpyxl==3.1.2
+python-dotenv==1.1.0
+pywhatkit==5.4
+requests==2.32.3
+pywin32==310
+pyautogui==0.9.54
+opencv-python
+Pillow
+fastapi
+uvicorn
