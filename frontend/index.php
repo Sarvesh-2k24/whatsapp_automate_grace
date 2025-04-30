@@ -216,10 +216,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Backend URL configuration
-        const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-            ? 'http://localhost:5000'
-            : `http://${window.location.hostname}:5000`;
-            
+        const BACKEND_URL = 'http://localhost:5000';
+        
         // Backend management functions
         async function checkBackend() {
             try {
@@ -238,22 +236,10 @@
             statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting WhatsApp backend server...';
             
             try {
-                const command = 'python';
-                const args = ['"c:\\xampp\\htdocs\\whatsapp_automation\\backend\\app.py"'];
-                
-                const response = await fetch(`${BACKEND_URL}/send-whatsapp`, {
-                    method: 'HEAD'
-                });
-                
-                if (!response.ok) {
-                    const startProcess = new Notification("Starting Backend", {
-                        body: "Starting WhatsApp automation backend...",
-                        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/svgs/brands/whatsapp.svg"
-                    });
-                    
-                    const process = window.open('cmd.exe /c ' + command + ' ' + args.join(' '), '_blank');
-                    if (process) process.blur();
-                    window.focus();
+                // Try to start the backend using start-backend.php
+                const startResponse = await fetch('start-backend.php');
+                if (!startResponse.ok) {
+                    throw new Error('Failed to start backend service');
                 }
                 
                 // Wait for backend to start
@@ -273,7 +259,7 @@
                     attempts++;
                 }
                 
-                throw new Error('Backend failed to start after 30 seconds');
+                throw new Error('Backend failed to start after multiple attempts');
             } catch (error) {
                 statusDiv.className = 'alert alert-danger';
                 statusDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> Failed to start backend server: ${error.message}`;
