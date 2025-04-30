@@ -39,7 +39,8 @@ ATTACHMENT_BUTTON = os.path.join(ASSETS_DIR, 'attachment_button.png')
 IMAGE_BUTTON = os.path.join(ASSETS_DIR, 'image_button.png')
 
 app = Flask(__name__)
-CORS(app)
+# Configure CORS to allow requests from any origin
+CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "*", "expose_headers": "*"}})
 
 # Maximum file sizes (in bytes)
 MAX_EXCEL_SIZE = 5 * 1024 * 1024  # 5MB for Excel files
@@ -319,4 +320,4 @@ def send_whatsapp():
         }), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)

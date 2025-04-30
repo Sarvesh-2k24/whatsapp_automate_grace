@@ -215,10 +215,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Backend URL configuration
+        const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000'
+            : `http://${window.location.hostname}:5000`;
+            
         // Backend management functions
         async function checkBackend() {
             try {
-                const response = await fetch('http://localhost:5000/send-whatsapp', {
+                const response = await fetch(`${BACKEND_URL}/send-whatsapp`, {
                     method: 'HEAD'
                 });
                 return response.ok;
@@ -236,7 +241,7 @@
                 const command = 'python';
                 const args = ['"c:\\xampp\\htdocs\\whatsapp_automation\\backend\\app.py"'];
                 
-                const response = await fetch('http://localhost:5000/send-whatsapp', {
+                const response = await fetch(`${BACKEND_URL}/send-whatsapp`, {
                     method: 'HEAD'
                 });
                 
@@ -518,7 +523,7 @@
 
         async function sendFormData(formData) {
             try {
-                const response = await fetch('http://localhost:5000/send-whatsapp', {
+                const response = await fetch(`${BACKEND_URL}/send-whatsapp`, {
                     method: 'POST',
                     body: formData
                 });
